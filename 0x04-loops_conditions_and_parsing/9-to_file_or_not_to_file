@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # script that gives you information about the school
-file="./school"
+file=school
 if [ -e $FILE ]; then
+
     echo "${FILE} file exists"
 
     if [ -s $FILE ]; then
