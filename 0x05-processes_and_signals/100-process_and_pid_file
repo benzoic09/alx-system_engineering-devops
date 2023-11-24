@@ -8,7 +8,7 @@
 
 echo "$$" > /var/run/myscript.pid
 
-trap 'echo "I hate the kill command"' exit 15 #SIGTERM
+trap 'echo "I hate the kil command"; rm -rf /var/run/myscript.pid; exit' 15 #SIGQUIT
 trap 'echo "Y U no love me?!"' SIGINT
 trap 'rm -f /var/run/myscript.pid; exit' 3 #SIGQUIT
 
