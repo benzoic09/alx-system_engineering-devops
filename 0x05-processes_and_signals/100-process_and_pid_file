@@ -12,7 +12,8 @@ trap 'echo "I hate the kil command"; rm -rf /var/run/myscript.pid; exit' 15 #SIG
 trap 'rm -rf /var/run/myscript.pid; exit' 3 #SIGINT
 trap 'Y U no love me?!exit' 2 #SIGTERM
 
-while true; do
-    echo "To infinity and beyond"
-    sleep 2
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
 done
