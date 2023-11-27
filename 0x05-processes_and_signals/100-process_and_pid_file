@@ -8,12 +8,11 @@
 
 echo "$$" > /var/run/myscript.pid
 
-trap 'echo "I hate the kil command"; rm -rf /var/run/myscript.pid; exit' 15 #SIGQUIT
-trap 'rm -rf /var/run/myscript.pid; exit' 3 #SIGINT
-trap 'Y U no love me?!exit' 2 #SIGTERM
+trap 'echo "I hate the kill command"'; 'rm -rf /var/run/myscript.pid; exit' SIGTERM
+trap 'echo "Y U no love me?!"' SIGINT
+trap 'rm -f /var/run/myscript.pid; exit' SIGQUIT
 
-while true
-do
-	echo "To infinity and beyond"
-	sleep 2
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
 done
