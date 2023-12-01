@@ -4,6 +4,6 @@
 # facebook.com resolves to 8.8.8.8
 
 cp /etc/hosts ~/host1.cpy
-echo "127.0.0.2 localhost" >> "~/host1.cpy"
-echo "8.8.8.8 facebook.com" >> "~/host1.cpy"
-cp -f ~/host1.cpy /etc/hosts
+echo "127.0.0.2 localhost" >> ~/host1.cpy
+echo "8.8.8.8 facebook.com" >> ~/host1.cpy
+cp -f ~/host1.cpy  /etc/hosts
