@@ -1,4 +1,4 @@
-#!/usr/bin/puppet
+#!/usr/bin/pup
 
 # Installing flask
 package { 'Flask':
