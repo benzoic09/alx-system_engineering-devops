@@ -6,3 +6,7 @@ exec { 'killmenow_process':
   refreshonly => true,
   logoutput   => true,
 }
+
+notify { 'Process killed':
+  subscribe => Exec['killmenow_process'],
+}
