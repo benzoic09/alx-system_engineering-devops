@@ -1,11 +1,5 @@
-# init.pp
-
-package { 'python3-pip':
-  ensure => installed,
-}
-
-exec { 'install_flask':
- path    => ['/usr/bin'],
- require => Package['python3-pip'],
-}
-
+#!/usr/bin/pop
+# installing flask
+package { 'Flask':
+  ensure   => '2.1.1',
+  provider => 'gem',
