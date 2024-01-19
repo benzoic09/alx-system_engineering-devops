@@ -1,4 +1,5 @@
 # installing flask
-package { 'python3-pip':
+package { 'Flask':
   ensure => installed,
+  provider => 'pip'
 }
