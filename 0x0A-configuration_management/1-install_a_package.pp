@@ -1,5 +1,5 @@
 #!/usr/bin/pup
-# Installing flask
+# Installing flask to get the api info
 
 package { 'Flask':
   ensure   => '2.1.1',
