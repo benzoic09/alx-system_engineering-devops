@@ -1,6 +1,6 @@
 # installing flask
 
 package { 'python3-pip':
-ensure   => installed,
+ensure   => '2.1.1',
 provider => 'gem'
 }
