@@ -5,4 +5,6 @@ exec { 'pkill -f killmenow':
   command     => '/usr/bin/pkill -9 killmenow',
   refreshonly => true,
   logoutput   => true,
+  onlyif      => 'pgrep killmenow',
+  provider    => shell,
 }
