@@ -7,6 +7,8 @@ exec { 'killmenow_process':
   logoutput   => true,
 }
 
-notify { 'Process killed':
-  subscribe => Exec['killmenow_process'],
+package {'Werkzeug':
+  ensure   => '2.1.1',
+  provider => 'pip3'
 }
+
