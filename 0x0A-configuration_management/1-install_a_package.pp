@@ -1,6 +1,8 @@
-#!/usr/bin/pop
-# installing flask
+#!/usr/bin/puppet
+
+# Installing flask
 package { 'Flask':
   ensure   => '2.1.1',
-  provider => 'gem'
-  }
+  provider => 'pip',
+  command  => '/usr/bin/pip3',
+}
