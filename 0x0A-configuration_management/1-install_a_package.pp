@@ -1,5 +1,6 @@
 # installing flask
-package { 'Flask':
-  ensure => installed,
-  provider => 'pip'
+
+package { 'puppet-lint':
+  ensure   => '2.1.1',
+  provider => 'gem',
 }
