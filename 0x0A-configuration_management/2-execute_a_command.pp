@@ -1,10 +1,6 @@
-#!/usr/bin/puppet
-
-# Define a Puppet exec resource to kill the process
-exec { 'pkill -f killmenow':
-  command     => '/usr/bin/pkill -9 killmenow',
-  refreshonly => true,
-  logoutput   => true,
-  onlyif      => 'pgrep killmenow',
-  provider    => shell,
+# Create a manifest that kills a process named killmenow
+exec {'pkill -f killmenow':
+    path     => ['/usr/bin'],
+    provider => shell,
+    command  => 'pkill -f killmenow'
 }
