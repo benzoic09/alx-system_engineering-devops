@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#client config file
+
+host 100.25.24.89
+    port 22
+    username ubuntu
+    identityfile ~/.ssh/school
+    passwordauthentication no
