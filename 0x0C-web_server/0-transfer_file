@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Assign parameters to variables
-FILE_PATH = "$1"
-SEVER = "$2"
-USERNAME"$3"
-SSH_KEY = "$4"
+#FILE_PATH = "$1"
+#SEVER = "$2"
+#USERNAME"$3"
+#SSH_KEY = "$4"
 
 if [ $# -lt 3 ];
 then
