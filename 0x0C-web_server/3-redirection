@@ -11,6 +11,6 @@ NEW_RULE="server_name_;\\n\\trewrite^/redirect_me https://github.com/benzoic09 p
 
 sudo sed -i "s#server_name _;#$NEW_RULE#" /etc/nginx/sites-enabled/default
 
-sudo nginx -t
+#sudo nginx -t
 
 sudo service nginx restart
