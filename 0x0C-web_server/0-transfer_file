@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Assign parameters to variables
 #FILE_PATH = "$1"
 #SEVER = "$2"
