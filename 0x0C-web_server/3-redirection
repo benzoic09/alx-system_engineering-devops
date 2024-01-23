@@ -1,0 +1,16 @@
+#!/bin/env bash
+
+# Install Nginx
+apt-get update
+apt-get install -y nginx
+
+# Configure Nginx for 301 redirection
+echo "server {
+    listen 80;
+    server_name _;
+
+    return 301 http://www.benzoic.tech\$request_uri;
+}" > /etc/nginx/sites-available/default
+
+# Restart Nginx
+service nginx restart
