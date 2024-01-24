@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
-#Install nginx web server
+# Install nginx web server
 
 sudo apt-get update
 sudo apt-get install -y nginx
 
 sudo chown -R "$USER":"$USER" /var/www/
-sudo chown -R "$USER":"$USER" /etc/ngix
+sudo chown -R "$USER":"$USER" /etc/nginx
 
 echo "Hello World!" | sudo tee /var/www/html/index.html
-NEW_RULE="server_name _;\\n\\trewrite ^/redirect_me https://github.com/benzoic09 permanent;"
-sudo sed -i "s#server_name _;#$NEW_RULE#" /etc/nginx/sites-enabled/default
+
+NEW_RULE="\\n\\tlocation /redirect_me {\\n\\t\\treturn 301 https://github.com/benzoic09;\\n\\t}\\n"
+
+sudo cp /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/default.bakup
+sudo sed -i "/server_name _;/a $NEW_RULE" /etc/nginx/sites-enabled/default
 
 sudo service nginx restart
+
