@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Update package lists
+sudo apt-get update
+
+# Install HAProxy
+sudo apt-get install -y haproxy
+
+# Enable HAProxy management via init script
+sudo sed -i 's/^ENABLED=0/ENABLED=1/' /etc/default/haproxy
+
+# Restart HAProxy to apply changes
+sudo systemctl restart haproxy
