@@ -12,4 +12,4 @@ SERVER_HOSTNAME=\$hostname
 sudo sed -i "/server_name _/a add_header X-Served-By $SERVER_HOSTNAME;" /etc/nginx/sites-enabled/default
 
 # Restart Nginx to apply changes
-sudo systemctl restart nginx
+sudo service nginx restart
