@@ -6,10 +6,10 @@ sudo apt-get update
 sudo apt-get install -y nginx
 
 # Retrieve the hostname of the server
-SERVER_HOSTNAME=$(hostname)
+SERVER_HOSTNAME=\$hostname
 
 # Configure Nginx to include custom HTTP response header
-echo "add_header X-Served-By $SERVER_HOSTNAME;" | sudo tee -a /etc/nginx/sites-available/default
+sudo sed -i "/server_name _/a add_header X-Served-By $SERVER_HOSTNAME;" /etc/nginx/sites-enabled/default
 
 # Restart Nginx to apply changes
 sudo systemctl restart nginx
