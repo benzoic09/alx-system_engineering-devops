@@ -11,7 +11,7 @@ sudo service haproxy start
 sudo service haproxy enable
 
 # Configure HAProxy to send traffic to web-01 and web-02 with roundrobin algorithm
-cat <<EOF | sudo tee -a /etc/haproxy/haproxy.cfg
+echo <<EOF | sudo tee -a /etc/haproxy/haproxy.cfg
 
 frontend http_front
     bind *:80
