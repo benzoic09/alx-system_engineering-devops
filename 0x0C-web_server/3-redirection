@@ -7,9 +7,23 @@ sudo apt-get install -y nginx
 # Creating an index.html page
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
-# Using sed to do a 301 Redirection
-Updated_Rule="server_name _;\\n\\trewrite ^/redirect_me https://github.com/benzoic09 permanent;"
-sudo sed -i "s#server_name _;#$Updated_Rule#" /etc/nginx/sites-enabled/default
+# configure Nginx for redirection
+sudo bash -c 'cat <<EOF | sudo tee /etc/nginx/sites-enabled/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    location /redirect_me {
+        return 301 https://bentechnews.blogspot.com;
+    }
+}
+EOF'
 
 # Restarting Nginx service
 sudo service nginx restart
+
