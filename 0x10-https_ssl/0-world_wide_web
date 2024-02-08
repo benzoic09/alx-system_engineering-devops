@@ -1,22 +1,20 @@
 #!/usr/bin/env bash
 # Function to display information about a subdomain
 
-display_info(){
-local subdomain="$2"
-local domain="$1"
-
-line=$(dig "$subdomain"."$domain" | grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
-echo "$subdomain $line" | awk -v domain="$domain" '{print "The subdomain " $1 " is a " $2 "
-record and points to " $3 for domain " domain}'
+display_info() {
+    local domain="$1"
+    local subdomain="$2"
+    
+    line=$(dig "$subdomain.$domain" | grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
+    echo "$subdomain $line" | awk -v domain="$domain" '{print "The subdomain " $1 " is a " $2 " record and points to " $3 " for domain " domain}'
 }
 
-if [ "$1" -eq 1 ]
-then
-display_info "$2" "www"
-display_info "$2" "lb-01"
-display_info "$2" "web01"
-display_info "$2" "web-02"
-elif [ "$1" -eq 2 ]
-then
-display_info "$2" "$3"
+if [ "$1" -eq 1 ]; then
+    display_info "$2" "www"
+    display_info "$2" "lb-01"
+    display_info "$2" "web-01"
+    display_info "$2" "web-02"
+elif [ "$1" -eq 2 ]; then
+    display_info "$2" "$3"
 fi
+
