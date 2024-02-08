@@ -9,12 +9,16 @@ display_info() {
     echo "$subdomain $line" | awk -v domain="$domain" '{print "The subdomain " $1 " is a " $2 " record and points to " $3 " for domain " domain}'
 }
 
-if [ "$1" -eq 1 ]; then
-    display_info "$2" "www"
-    display_info "$2" "lb-01"
-    display_info "$2" "web-01"
-    display_info "$2" "web-02"
-elif [ "$1" -eq 2 ]; then
-    display_info "$2" "$3"
+# Check if only domain parameter is provided
+if [ -z "$2" ]; then
+    # Default subdomains
+    subdomains=("www" "lb-01" "web-01" "web-02")
+    
+    # Display information for default subdomains
+    for subdomain in "${subdomains[@]}"; do
+        display_info "$1" "$subdomain"
+    done
+else
+    # Display information for the specified subdomain
+    display_info "$1" "$2"
 fi
-
