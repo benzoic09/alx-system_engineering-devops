@@ -10,13 +10,13 @@ echo "$subdomain $line" | awk -v domain="$domain" '{print "The subdomain " $1 " 
 record and points to " $3 for domain " domain}'
 }
 
-if [ "$1" == 1 ]
+if [ "$1" -eq 1 ]
 then
 display_info "$2" "www"
 display_info "$2" "lb-01"
 display_info "$2" "web01"
 display_info "$2" "web-02"
-elif [ "$1" == 2 ]
+elif [ "$1" -eq 2 ]
 then
 display_info "$2" "$3"
 fi
