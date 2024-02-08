@@ -11,11 +11,11 @@ echo "$subdomain $line" | awk '{print "The subdomain " $1 " is a " $2 " record a
 
 if [ "$1" == 1 ]
 then
-display_info "$1" "www"
-display_info "$1" "lb-01"
-display_info "$1" "web01"
-display_info "$1" "web-02"
+display_info "$2" "www"
+display_info "$2" "lb-01"
+display_info "$2" "web01"
+display_info "$2" "web-02"
 elif [ "$1" == 2 ]
 then
-display_info "$1" "$2"
+display_info "$2" "$3"
 fi
