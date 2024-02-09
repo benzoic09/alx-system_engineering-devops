@@ -35,3 +35,4 @@ EOF'
 
 # Restart Nginx service
 sudo service nginx restart
+
