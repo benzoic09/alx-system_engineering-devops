@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Step 1: Modify Nginx configuration to run as nginx user
+
+sudo sed -i 's/^user\s*www-data;/user nginx;/' /etc/nginx/nginx.conf
+
+# Step 2: Modify Nginx configuration to listen on all active IPs on port 8080
+echo " listen 8080;" | sudo tee -a /etc/nginx/nginx.conf > /dev/null
+
+# Step 3: Restart Nginx service
+sudo service nginx restart
