@@ -11,7 +11,7 @@ if __name__ == "__main__":
     userId = sys.argv[1]
 
     # Fetch user information
-    user = requests.get(f"https://jsonplaceholder.typicode.com/users/{userId}")
+    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".format(userId))
     user_data = user.json()
     username = user_data.get('username')
 
@@ -26,9 +26,10 @@ if __name__ == "__main__":
         csv_data.append([userId, username, task_completed_status, task.get('title')])
 
     # Write CSV data to file
-    filename = f"{userId}.csv"
+    filename = "{}.csv".format(userId)
     with open(filename, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
         csv_writer.writerows(csv_data)
 
-    print(f"CSV file '{filename}' has been generated.")
+    print("CSV file '{}' has been generated.".format(filename))
+
