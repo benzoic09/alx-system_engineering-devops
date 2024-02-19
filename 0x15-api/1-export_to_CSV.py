@@ -37,4 +37,4 @@ if __name__ == "__main__":
         csv_writer = csv.writer(csvfile)
         csv_writer.writerows(csv_data)
 
-    print("CSV file '{}' has been generated.".format(filename))
+    print("CSV file '{}' has been generated.".format(filename, task_count))))

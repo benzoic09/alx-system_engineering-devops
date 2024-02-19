@@ -27,6 +27,5 @@ if __name__ == "__main__":
     print('Employee {} is done with tasks({}/{}):'.format(
         name, completed, totalTasks))
 
-    print('\n'.join(["\t " + task.get('title')
-        for task in todos.json()
+    print('\n'.join(["\t " + task.get('title') for task in todos.json()
         if task.get('userId') == int(userId) and task.get('completed')]))
