@@ -31,11 +31,8 @@ if __name__ == "__main__":
     # Write data to CSV file
     with open(filename, 'w', newline='') as csvfile:
         csvwriter = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        csvwriter.writerow(
-            ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
 
         for task in todos.json():
             if task.get('userId') == int(userId):
                 task_status = "True" if task.get('completed') else "False"
-                csvwriter.writerow(
-                   [userId, name, task_status, task.get("title")])
+                csvwriter.writerow([userId, name, task_status, task.get('title')])
