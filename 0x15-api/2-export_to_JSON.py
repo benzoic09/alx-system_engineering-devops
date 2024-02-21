@@ -16,11 +16,10 @@ if __name__ == "__main__":
                          .format(userid)).json()
     username = users.get("username")
 
-    # Filter tasks for the specified user ID
-    user_tasks = [{"task": task.get("title"), "completed":
-                   task.get("completed"), "username": username}
-                  for task in todos if task.get("userId") == int(userid)]
-
     # Write data to JSON file
-    with open("{}.json".format(userid), 'w') as jsonfile:
-        json.dump(user_tasks, jsonfile, indent=4)
+    with open("{}.json".format(userid), "w") as jsonfile:
+        json.dump({userid: [{
+            "task": t.get("title"),
+            "completed": t.get("completed"),
+            "username": username
+        } for t in todos]}, jsonfile)
