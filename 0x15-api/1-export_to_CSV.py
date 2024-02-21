@@ -13,7 +13,7 @@ if __name__ == "__main__":
     user = requests.get("https://jsonplaceholder.typicode.com/users/{}"
                         .format(userId))
 
-    name = user.json().get('name')
+    username = user.json().get("username")
 
     todos = requests.get('https://jsonplaceholder.typicode.com/todos')
     totalTasks = 0
@@ -35,4 +35,5 @@ if __name__ == "__main__":
         for task in todos.json():
             if task.get('userId') == int(userId):
                 task_status = "True" if task.get('completed') else "False"
-                csvwriter.writerow([userId, name, task_status, task.get('title')])
+                csvwriter.writerow(
+                    [userId, username, task_status, task.get('title')])
