@@ -25,13 +25,6 @@ if __name__ == "__main__":
             if task.get('completed'):
                 completed += 1
 
-    print('Employee {} is done with tasks({}/{}):'.format(
-        name, completed, totalTasks))
-
-    print('\n'.join(["\t " + task.get('title') for task in todos.json()
-                     if task.get('userId') == int(userId)
-                     and task.get('completed')]))
-
     # Create a CSV file with user ID as the filename
     filename = "{}.csv".format(userId)
 
@@ -43,8 +36,6 @@ if __name__ == "__main__":
 
         for task in todos.json():
             if task.get('userId') == int(userId):
-                task_status = "True"if task.get('completed') else "False"
+                task_status = "True" if task.get('completed') else "False"
                 csvwriter.writerow(
-                    [userId, name, task_status, task.get('title')])
-
-    print("Data exported to", filename)
+                   [userId, name, task_status, task.get("title")])
