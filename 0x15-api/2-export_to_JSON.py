@@ -9,22 +9,18 @@ import requests
 import sys
 
 if __name__ == "__main__":
-    todos = requests.get('https://jsonplaceholder.typicode.com/todos')
-    users = requests.get('https://jsonplaceholder.typicode.com/users')
+    userid = sys.argv[1]
 
-    # Organize tasks by user ID
-    tasks_by_user = {}
-    for task in todos.json():
-        userId = sys.argv[1]
-        if userId not in tasks_by_user:
-            tasks_by_user[userId] = []
-        tasks_by_user[userId].append({
-            'username': [user['username'] for user in users.json()
-                         if user['id'] == userId],
-            'task': task.get('title'),
-            'completed': task.get('completed')
-        })
+    todos = requests.get('https://jsonplaceholder.typicode.com/todos').json()
+    users = requests.get('https://jsonplaceholder.typicode.com/users/{}'
+                         .format(userid)).json()
+    username = users.get("username")
+
+    # Filter tasks for the specified user ID
+    user_tasks = [{"task": task.get("title"), "completed":
+                   task.get("completed"), "username": username}
+                  for task in todos if task.get("userId") == int(userid)]
 
     # Write data to JSON file
-    with open("{}.json".format(userId), 'w') as jsonfile:
-        json.dump(tasks_by_user, jsonfile, indent=4)
+    with open("{}.json".format(userid), 'w') as jsonfile:
+        json.dump(user_tasks, jsonfile, indent=4)
