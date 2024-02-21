@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Python script that, using a REST API, exports data in JSON format for all employees' tasks.
+Python script that, using a REST API,
+exports data in JSON format for all employees' tasks.
 """
 
 import json
@@ -18,7 +19,8 @@ if __name__ == "__main__":
         if userId not in tasks_by_user:
             tasks_by_user[userId] = []
         tasks_by_user[userId].append({
-            'username': [user['username'] for user in users.json() if user['id'] == userId],
+            'username': [user['username'] for user in users.json()
+                         if user['id'] == userId],
             'task': task.get('title'),
             'completed': task.get('completed')
         })
