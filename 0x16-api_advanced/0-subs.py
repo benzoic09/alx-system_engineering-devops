@@ -7,7 +7,7 @@ def number_of_subscribers(subreddit):
 
     headers = {"User-Agent": "Custom User Agent"}
 
-    response = requests.get(url, headers=headers, allow_redirect=False)
+    response = requests.get(url, headers=headers, allow_redirects=False)
 
     data = response.json()
     subscribers = data['data']['subscribers']
