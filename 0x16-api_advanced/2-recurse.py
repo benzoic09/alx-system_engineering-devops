@@ -8,22 +8,15 @@ def recurse(subreddit, hot_list=[], after=None):
     """Recursive function that queries the Reddit
     API and returns a list of titles"""
 
-    sub_info = requests.get("https://www.reddit.com/r/{}/hot.json"
-                            .format(subreddit),
-                            params={"count": count, "after": after},
-                            headers={"User-Agent": "My-User-Agent"},
-                            allow_redirects=False)
-    if sub_info.status_code >= 400:
+    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
+    headers = {'user-agent': 'custom'}
+    r = requests.get(url, headers=headers, allow_redirects=False)
+    if r.status_code == 200:
+        r = r.json()
+        for post in r.get('data').get('children'):
+            hot_list.append(post.get('data').get('title'))
+        if r.get('data').get('after'):
+            recurse(subreddit, hot_list)
+        return hot_list
+    else:
         return None
-
-    hot_l = hot_list + [child.get("data").get("title")
-                        for child in sub_info.json()
-                        .get("data")
-                        .get("children")]
-
-    info = sub_info.json()
-    if not info.get("data").get("after"):
-        return hot_l
-
-    return recurse(subreddit, hot_l, info.get("data").get("count"),
-                   info.get("data").get("after"))
