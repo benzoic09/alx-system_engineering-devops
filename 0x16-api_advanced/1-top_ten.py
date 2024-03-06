@@ -5,23 +5,16 @@ import requests
 
 
 def top_ten(subreddit):
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
-    headers = {"User-Agent": "My-User-Agent"}
+    """
+    Queries the Reddit API and returns the top 10 hot posts
+    """
 
-    try:
-        response = requests.get(url, headers=headers, allow_redirects=False)
-        response.raise_for_status()  # Raise an exception for non-200 status codes
-        data = response.json()  # Convert response to JSON
-
-        if "data" in data and "children" in data["data"]:
-            posts = data["data"]["children"]
-            for post in posts:
-                print(post["data"]["title"])
-        else:
-            print(None)
-    except requests.exceptions.RequestException as e:
-        print(f"Error: {e}")
-        print(None)
-
-# Example usage:
-# top_ten("askreddit")
+    sub_info = requests.get("https://www.reddit.com/r/{}/hot.json?limit=10"
+                            .format(subreddit),
+                            headers={"User-Agent": "My-User-Agent"},
+                            allow_redirects=False)
+    if sub_info.status_code >= 300:
+        print('None')
+    else:
+        [print(child.get("data").get("title"))
+         for child in sub_info.json().get("data").get("children")]
