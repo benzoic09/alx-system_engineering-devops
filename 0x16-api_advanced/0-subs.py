@@ -3,6 +3,7 @@
 
 import requests
 
+
 def number_of_subscribers(subreddit):
     """Queries the Reddit API and returns the number of subscribers
     to the subreddit"""
@@ -11,7 +12,7 @@ def number_of_subscribers(subreddit):
     sub_info_url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
 
     # Set custom User-Agent header
-    headers = {"User-Agent":"Ubuntu 20.04"}
+    headers = {"User-Agent": "Ubuntu 20.04"}
 
     # Make the GET request to the subreddit information URL
     response = requests.get(
