@@ -6,6 +6,8 @@ def number_of_subscribers(subreddit):
     """Queries the Reddit API and returns the number of subscribers
     to the subreddit"""
     import requests
+    if subreddit is None or not isinstance(subreddit, str):
+        return 0
 
     sub_info_url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
 
