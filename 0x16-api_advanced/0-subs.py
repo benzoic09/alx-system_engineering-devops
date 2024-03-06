@@ -9,7 +9,7 @@ def number_of_subscribers(subreddit):
 
     sub_info_url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
 
-    headers = {"User-Agent": "My-User-Agent"}
+    headers = {"User-Agent": "CustomClient/1.0"}
 
     response = requests.get(
         sub_info_url, headers=headers, allow_redirects=False)
