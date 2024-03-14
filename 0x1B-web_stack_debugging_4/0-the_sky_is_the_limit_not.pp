@@ -16,11 +16,8 @@ exec { 'fix_nginx_errors':
   path    => '/usr/local/bin/:/bin/'
 }
 
-# Define the script file
--> file { '/usr/local/bin/fix_nginx_errors.sh':
-  ensure  => file,
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0755',
-  content => template('nginx/fix_nginx_errors.sh.erb'),
+# restart Nginx
+-> exec { 'nginx-restart':
+  command => 'nginx restart',
+  path    => '/etc/init.d/'
 }
