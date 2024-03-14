@@ -12,14 +12,12 @@ file { '/etc/nginx/nginx.conf':
 
 # Define Exec resource to run the script
 exec { 'fix_nginx_errors':
-  command     => '/usr/local/bin/fix_nginx_errors.sh',
-  path        => ['/usr/local/bin', '/bin', '/usr/bin'],
-  refreshonly => true,
-  subscribe   => File['/etc/nginx/nginx.conf'],
+  command => 'sed -i "s/15/4096/" /etc/default/nginx',
+  path    => '/usr/local/bin/:/bin/'
 }
 
 # Define the script file
-file { '/usr/local/bin/fix_nginx_errors.sh':
+-> file { '/usr/local/bin/fix_nginx_errors.sh':
   ensure  => file,
   owner   => 'root',
   group   => 'root',
