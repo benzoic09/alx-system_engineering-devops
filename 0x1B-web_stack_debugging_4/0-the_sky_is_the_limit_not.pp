@@ -10,10 +10,18 @@ file { '/etc/nginx/nginx.conf':
   notify  => Service['nginx'],
 }
 
-# Define Nginx service
-service { 'nginx':
-  ensure     => running,
-  enable     => true,
-  hasrestart => true,
-  subscribe  => File['/etc/nginx/nginx.conf'],
+# Define Exec resource to run the script
+exec { 'fix_failed_requests':
+  command     => '/usr/local/bin/fix_failed_requests.sh',
+  refreshonly => true,  # Only run when the nginx.conf file changes
+  subscribe   => File['/etc/nginx/nginx.conf'],
+}
+
+# Define the script file
+file { '/usr/local/bin/fix_failed_requests.sh':
+  ensure  => file,
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0755',
+  content => template('nginx/fix_failed_requests.sh.erb'),
 }
