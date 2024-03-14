@@ -17,4 +17,3 @@ service { 'nginx':
   hasrestart => true,
   subscribe  => File['/etc/nginx/nginx.conf'],
 }
-
